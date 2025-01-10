@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Habit Tracker</h1>
+    <button id="add-habit">+ New Habit</button>
+  </div>
+  <div class="month-navigator">
+    <span id="prev-month">← Previous</span>
+    <span class="month-name" id="current-month"></span>
+    <span id="next-month">Next →</span>
+  </div>
+  <table class="habit-table" id="habit-table">
+    <thead>
+      <tr id="days-row">
+        <th>Habits</th>
+      </tr>
+    </thead>
+    <tbody id="habit-rows">
+    </tbody>
+  </table>
+  <div class="controls">
+    <button id="clear-data">Clear All</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

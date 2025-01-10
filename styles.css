@@ -1,0 +1,141 @@
+/* Main Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #4b4b4b;
+  color: white;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.month-navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.month-navigator span {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.month-name {
+  font-weight: bold;
+}
+
+.habit-table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.habit-table th,
+.habit-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.habit-table th {
+  background-color: #f4f4f4;
+}
+
+.habit-table td.complete {
+  background-color: #0de0a1;
+}
+
+.habit-table td.incomplete {
+  background-color: #fffe54;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.controls button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: #4b4b4b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.controls button:hover {
+  background-color: #666;
+}
+
+/* Style for Edit and Remove buttons */
+.habit-row {
+  position: relative;
+}
+
+.habit-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30px; /* Space for buttons */
+}
+
+.habit-name {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+}
+
+.remove-habit,
+.edit-habit {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.edit-habit {
+  background-color: #4CAF50;
+}
+
+.habit-row:hover .remove-habit,
+.habit-row:hover .edit-habit {
+  visibility: visible;
+  opacity: 1;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
