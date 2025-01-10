@@ -53,11 +53,11 @@ body {
 }
 
 .habit-table td.complete {
-  background-color: #0de0a1;
+  background-color: #6919cc;
 }
 
 .habit-table td.incomplete {
-  background-color: #fffe54;
+  background-color: #ffffff;
 }
 
 .controls {
@@ -124,7 +124,7 @@ body {
 }
 
 button {
-  background-color: #007bff;
+  background-color: #36393d;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -133,7 +133,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #151617;
 }
 
 button:focus {
