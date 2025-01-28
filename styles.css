@@ -3,20 +3,61 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #4b4b4b;
+  padding: 20px 40px;
+  background: linear-gradient(90deg, #4b4b4b, #6a6a6a);
   color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.header button {
+  background-color: #ffd700;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header button:hover {
+  background-color: #f4b400;
+}
+
+.edit-habit,
+.remove-habit {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-left: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.remove-habit {
+  background-color: #f44336;
+}
+
+.edit-habit:hover,
+.remove-habit:hover {
+  opacity: 0.8;
 }
 
 .month-navigator {
@@ -24,118 +65,117 @@ body {
   justify-content: center;
   align-items: center;
   margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .month-navigator span {
-  margin: 0 10px;
+  margin: 0 20px;
   cursor: pointer;
+  color: #4b4b4b;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.month-navigator span:hover {
+  color: #ffd700;
+  transform: scale(1.2);
 }
 
 .month-name {
-  font-weight: bold;
+  color: #4CAF50;
+  text-transform: uppercase;
+  font-size: 22px;
 }
 
 .habit-table {
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto;
   border-collapse: collapse;
-}
-
-.habit-table th,
-.habit-table td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 8px;
+  border-radius: 10px;
+  overflow: hidden; /* Ensures rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .habit-table th {
-  background-color: #f4f4f4;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 10px;
 }
 
-.habit-table td.complete {
-  background-color: #6919cc;
+.habit-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
 }
 
-.habit-table td.incomplete {
+.habit-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.habit-table tr:nth-child(odd) {
   background-color: #ffffff;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
+.habit-table td.complete {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
 }
 
+.habit-table td.incomplete {
+  background-color: #ffc1c1;
+  color: black;
+}
+
+/* Style for the header cell of today's date */
+.today-highlight-header {
+  background: linear-gradient(45deg, #20ce88e6, #00ff00);
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #000;
+  border-radius: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: pulse 1s infinite;
+}
+
+/* Subtle animation to make it "pulse" */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+}
+
+
 .controls button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  background-color: #4b4b4b;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  cursor: pointer;
+  padding: 12px 20px;
   font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .controls button:hover {
-  background-color: #666;
+  background-color: #45a049;
+  transform: scale(1.1);
 }
 
-/* Style for Edit and Remove buttons */
-.habit-row {
-  position: relative;
-}
-
-.habit-name-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 30px; /* Space for buttons */
-}
-
-.habit-name {
-  display: inline-block;
-  font-weight: bold;
-  font-size: 16px;
-  text-align: left;
-}
-
-.remove-habit,
-.edit-habit {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 12px;
-}
-
-.edit-habit {
-  background-color: #4CAF50;
-}
-
-.habit-row:hover .remove-habit,
-.habit-row:hover .edit-habit {
-  visibility: visible;
-  opacity: 1;
-}
-
-button {
-  background-color: #36393d;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #151617;
-}
-
-button:focus {
-  outline: none;
+.controls button:active {
+  background-color: #3e8e41;
 }
