@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Tracker by Raj</title>
+  <title>Habit Tracker by Hareram</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="header">
-    <h1>Study Tracker</h1>
-    <button id="add-habit">+ New Habit</button>
+    <h1>Habit Tracker</h1>
+    <button id="add-habit" title="Add a new habit">+ New Habit</button>
   </div>
   <div class="month-navigator">
-    <span id="prev-month">← Previous</span>
+    <span id="prev-month" title="Previous month">← Previous</span>
     <span class="month-name" id="current-month"></span>
-    <span id="next-month">Next →</span>
+    <span id="next-month" title="Next month">Next →</span>
   </div>
   <table class="habit-table" id="habit-table">
     <thead>
@@ -27,7 +27,7 @@
     </tbody>
   </table>
   <div class="controls">
-    <button id="clear-data">Clear All</button>
+    <button id="clear-data" title="Clear all data">Clear All</button>
   </div>
 
   <script src="script.js"></script>
