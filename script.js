@@ -1,4 +1,3 @@
-// Initialization
 const habitTable = document.getElementById("habit-table");
 const daysRow = document.getElementById("days-row");
 const habitRows = document.getElementById("habit-rows");
@@ -12,55 +11,42 @@ const clearDataBtn = document.getElementById("clear-data");
 let habits = [];
 let date = new Date();
 
-// Helper function to get the current month and year key for local storage
 function getStorageKey() {
   const year = date.getFullYear();
   const month = date.getMonth();
   return `${year}-${month}`;
 }
 
-// Load habits from local storage for the current month
 function loadHabits() {
-  const storageKey = getStorageKey();
-  habits = JSON.parse(localStorage.getItem(storageKey)) || [];
+  habits = JSON.parse(localStorage.getItem(getStorageKey())) || [];
 }
 
-// Save habits to local storage for the current month
 function saveHabits() {
-  const storageKey = getStorageKey();
-  localStorage.setItem(storageKey, JSON.stringify(habits));
+  localStorage.setItem(getStorageKey(), JSON.stringify(habits));
 }
 
-// Render Calendar
 function renderCalendar() {
   loadHabits();
 
-  // Get the current month and year
   const year = date.getFullYear();
   const month = date.getMonth();
+  const today = new Date();
 
-  // Display the month name
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December",
-  ];
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
   currentMonth.textContent = `${monthNames[month]} ${year}`;
 
-  // Set up days of the month
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
   daysRow.innerHTML = `<th>Habits</th>`;
   for (let day = 1; day <= daysInMonth; day++) {
-    daysRow.innerHTML += `<th>${day}</th>`;
+    const isToday = today.getFullYear() === year && today.getMonth() === month && today.getDate() === day;
+    daysRow.innerHTML += `<th class="${isToday ? 'today-highlight-header' : ''}">${day}</th>`;
   }
-  daysRow.innerHTML += `<th>Total Completed</th>`; // Add extra column for completed habits count
+  daysRow.innerHTML += `<th>Total</th>`;
 
-  // Render the habits
   habitRows.innerHTML = "";
   habits.forEach((habit, habitIndex) => {
     const row = document.createElement("tr");
-    row.classList.add("habit-row"); // Add class for hover effect
-    
-    // Habit name with edit/remove buttons
     row.innerHTML = `
       <td>
         <div class="habit-name-container">
@@ -70,29 +56,20 @@ function renderCalendar() {
         </div>
       </td>
     `;
-    
-    let completedCount = 0;
+    let completed = 0;
 
     for (let day = 1; day <= daysInMonth; day++) {
       const cell = document.createElement("td");
-      cell.classList.add("normal-cell");
-      if (habit.days.includes(day)) {
-        cell.textContent = "✔";
-        cell.classList.add("complete");
-        completedCount++;
-      } else {
-        cell.classList.add("incomplete");
-      }
-      // Add edit functionality (click to toggle completed status)
+      cell.className = habit.days.includes(day) ? "complete" : "incomplete";
+      cell.textContent = habit.days.includes(day) ? "✔" : "";
       cell.addEventListener("click", () => toggleDay(habitIndex, day));
       row.appendChild(cell);
+      completed += habit.days.includes(day) ? 1 : 0;
     }
 
-    // Add total completed habits for this row
-    const totalCompletedCell = document.createElement("td");
-    totalCompletedCell.textContent = completedCount;
-    row.appendChild(totalCompletedCell);
-    
+    const totalCell = document.createElement("td");
+    totalCell.textContent = completed;
+    row.appendChild(totalCell);
     habitRows.appendChild(row);
   });
 }
@@ -100,9 +77,9 @@ function renderCalendar() {
 function toggleDay(habitIndex, day) {
   const habit = habits[habitIndex];
   if (habit.days.includes(day)) {
-    habit.days = habit.days.filter(d => d !== day); // Remove completion
+    habit.days = habit.days.filter(d => d !== day);
   } else {
-    habit.days.push(day); // Add completion
+    habit.days.push(day);
   }
   saveHabits();
   renderCalendar();
@@ -117,16 +94,6 @@ function addHabit() {
   }
 }
 
-function clearData() {
-  if (confirm("Are you sure you want to clear all data?")) {
-    habits = [];
-    const storageKey = getStorageKey();
-    localStorage.removeItem(storageKey);
-    renderCalendar();
-  }
-}
-
-// Function to remove a habit entirely
 function removeHabit(habitIndex) {
   if (confirm(`Are you sure you want to remove the habit: "${habits[habitIndex].name}"?`)) {
     habits.splice(habitIndex, 1);
@@ -135,7 +102,6 @@ function removeHabit(habitIndex) {
   }
 }
 
-// Function to edit a habit's name
 function editHabit(habitIndex) {
   const newHabitName = prompt("Edit habit name:", habits[habitIndex].name);
   if (newHabitName) {
@@ -145,9 +111,13 @@ function editHabit(habitIndex) {
   }
 }
 
-// Event Listeners
-addHabitBtn.addEventListener("click", addHabit);
-clearDataBtn.addEventListener("click", clearData);
+clearDataBtn.addEventListener("click", () => {
+  if (confirm("Clear all data?")) {
+    habits = [];
+    localStorage.removeItem(getStorageKey());
+    renderCalendar();
+  }
+});
 
 prevMonth.addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
@@ -159,5 +129,6 @@ nextMonth.addEventListener("click", () => {
   renderCalendar();
 });
 
-// Initial Render
+addHabitBtn.addEventListener("click", addHabit);
+
 renderCalendar();
