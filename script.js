@@ -51,8 +51,8 @@ function renderCalendar() {
       <td>
         <div class="habit-name-container">
           <span class="habit-name">${habit.name}</span>
-          <button class="edit-habit" onclick="editHabit(${habitIndex})">Edit</button>
-          <button class="remove-habit" onclick="removeHabit(${habitIndex})">Remove</button>
+          <button class="edit-habit" onclick="editHabit(${habitIndex})">✏️</button>
+          <button class="remove-habit" onclick="removeHabit(${habitIndex})">🗑️</button>
         </div>
       </td>
     `;
