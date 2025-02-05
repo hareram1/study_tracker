@@ -41,18 +41,18 @@ body {
 
 .edit-habit,
 .remove-habit {
-  background-color: #4CAF50;
+  background-color: #11101089;
   color: white;
   border: none;
-  padding: 5px 10px;
-  font-size: 12px;
+  /* padding: 5px 10px; */
+  font-size: 10px;
   margin-left: 5px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .remove-habit {
-  background-color: #f44336;
+  background-color: #11101089;
 }
 
 .edit-habit:hover,
